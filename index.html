@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La Ruta Artesana · Porque lo hecho a mano tiene vida</title>
+  <meta name="description" content="La aplicación que une personas artesanas con personas que valoran lo hecho a mano. Descubre talleres, artesanía única y experiencias reales cerca de ti.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --vd: #2d6a4f;
+      --vm: #52b788;
+      --vl: #95d5b2;
+      --tierra: #8b5a2b;
+      --arena: #f0e6d3;
+      --negro: #0a0a0a;
+      --blanco: #faf8f4;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--negro);
+      color: var(--blanco);
+      font-family: 'Lato', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.55;
+      display: none;
+    }
+
+    .hero-foto {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.55;
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .hero-video { display: block; }
+      .hero-foto { display: none; }
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to bottom, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.1) 40%, rgba(10,10,10,0.7) 100%),
+        linear-gradient(to right, rgba(10,10,10,0.4) 0%, rgba(10,10,10,0) 60%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      padding: 0 32px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeUp 1.2s ease 0.3s forwards;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Lato', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--vm);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 1px;
+      background: var(--vm);
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 900;
+      line-height: 1.05;
+      color: var(--blanco);
+      margin-bottom: 12px;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--vl);
+    }
+
+    .hero-subtitle {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1rem, 2.5vw, 1.4rem);
+      font-weight: 400;
+      font-style: italic;
+      color: rgba(250,248,244,0.7);
+      margin-bottom: 40px;
+      line-height: 1.5;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--vm);
+      color: var(--negro);
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 16px 32px;
+      border-radius: 2px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .btn-primary:hover { background: var(--vl); transform: translateY(-2px); }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: transparent;
+      color: var(--blanco);
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: 0.05em;
+      padding: 16px 32px;
+      border: 1px solid rgba(250,248,244,0.3);
+      border-radius: 2px;
+      text-decoration: none;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+
+    .btn-secondary:hover { border-color: var(--vm); color: var(--vm); transform: translateY(-2px); }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      animation: fadeIn 1s ease 1.5s forwards;
+    }
+
+    .hero-scroll span {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(250,248,244,0.4);
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to bottom, rgba(82,183,136,0.8), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    /* ── FRANJA VERDE ── */
+    .franja {
+      background: var(--vd);
+      padding: 20px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 48px;
+      flex-wrap: wrap;
+      overflow: hidden;
+    }
+
+    .franja-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(250,248,244,0.85);
+      white-space: nowrap;
+    }
+
+    .franja-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--vl);
+      flex-shrink: 0;
+    }
+
+    /* ── SECCIÓN: LA HISTORIA ── */
+    .section {
+      padding: 120px 32px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--vm);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .section-label::after {
+      content: '';
+      display: block;
+      flex: 1;
+      max-width: 60px;
+      height: 1px;
+      background: var(--vm);
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--blanco);
+      margin-bottom: 24px;
+    }
+
+    .section-title em {
+      font-style: italic;
+      color: var(--vl);
+    }
+
+    .section-body {
+      font-size: 17px;
+      font-weight: 300;
+      line-height: 1.8;
+      color: rgba(250,248,244,0.65);
+      max-width: 560px;
+    }
+
+    /* ── GRID FOTOS ── */
+    .foto-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 420px;
+      gap: 8px;
+      margin-top: 80px;
+    }
+
+    .foto-item {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .foto-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+      filter: saturate(0.85);
+    }
+
+    .foto-item:hover img { transform: scale(1.04); filter: saturate(1); }
+
+    .foto-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(10,10,10,0.5) 0%, transparent 50%);
+    }
+
+    /* ── CÓMO FUNCIONA ── */
+    .como {
+      background: #111;
+      padding: 120px 32px;
+    }
+
+    .como-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .pasos {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 48px;
+      margin-top: 64px;
+    }
+
+    .paso {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .paso.visible { opacity: 1; transform: translateY(0); }
+
+    .paso-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 5rem;
+      font-weight: 900;
+      color: rgba(82,183,136,0.12);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .paso-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--blanco);
+      margin-bottom: 12px;
+    }
+
+    .paso-body {
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.7;
+      color: rgba(250,248,244,0.55);
+    }
+
+    .paso-line {
+      width: 32px;
+      height: 2px;
+      background: var(--vm);
+      margin-bottom: 20px;
+    }
+
+    /* ── APP MOCKUP ── */
+    .mockup-section {
+      padding: 120px 32px;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .mockup-img {
+      position: relative;
+    }
+
+    .mockup-img img {
+      width: 100%;
+      max-width: 320px;
+      border-radius: 32px;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.06);
+      display: block;
+      margin: 0 auto;
+    }
+
+    .mockup-badge {
+      position: absolute;
+      bottom: -20px;
+      right: 20px;
+      background: var(--vd);
+      border: 1px solid rgba(82,183,136,0.3);
+      border-radius: 12px;
+      padding: 14px 20px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--blanco);
+      white-space: nowrap;
+    }
+
+    .mockup-badge span {
+      display: block;
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--vm);
+    }
+
+    .mockup-text .section-body { margin-bottom: 40px; }
+
+    /* ── ARTESANOS ── */
+    .artesanos-section {
+      background: #0d1a11;
+      padding: 120px 32px;
+    }
+
+    .artesanos-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .artesanos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 64px;
+    }
+
+    .artesano-card {
+      position: relative;
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .artesano-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+      filter: grayscale(20%);
+    }
+
+    .artesano-card:hover img { transform: scale(1.06); filter: grayscale(0%); }
+
+    .artesano-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.1) 50%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 24px;
+    }
+
+    .artesano-oficio {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--vm);
+      margin-bottom: 6px;
+    }
+
+    .artesano-nombre {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--blanco);
+    }
+
+    /* ── CTA FINAL ── */
+    .cta-section {
+      padding: 140px 32px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(45,106,79,0.25) 0%, rgba(10,10,10,0) 70%);
+    }
+
+    .cta-section .section-title {
+      max-width: 700px;
+      margin: 0 auto 16px;
+    }
+
+    .cta-section .section-body {
+      max-width: 480px;
+      margin: 0 auto 48px;
+      text-align: center;
+    }
+
+    .cta-btns {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 48px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--blanco);
+    }
+
+    .footer-logo span { color: var(--vm); }
+
+    .footer-copy {
+      font-size: 12px;
+      color: rgba(250,248,244,0.3);
+    }
+
+    /* ── ANIMACIONES ── */
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 1; transform: scaleY(1); }
+      50% { opacity: 0.4; transform: scaleY(0.7); }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .foto-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 200px 200px;
+      }
+      .foto-item:first-child { grid-row: span 1; }
+      .pasos { grid-template-columns: 1fr; gap: 48px; }
+      .mockup-section { grid-template-columns: 1fr; gap: 48px; }
+      .artesanos-grid { grid-template-columns: 1fr 1fr; }
+      footer { flex-direction: column; text-align: center; }
+      .franja { gap: 24px; }
+    }
+
+    @media (max-width: 480px) {
+      .foto-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+      .foto-item { height: 220px; }
+      .artesanos-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <video class="hero-video" autoplay muted loop playsinline>
+      <source src="video-hero.mp4" type="video/mp4">
+    </video>
+    <img class="hero-foto" src="foto-taller.jpeg" alt="Artesanía">
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+      <div class="hero-eyebrow">La Ruta Artesana</div>
+      <h1 class="hero-title">Porque lo hecho<br>a mano <em>tiene vida</em></h1>
+      <p class="hero-subtitle">Una aplicación que une personas artesanas<br>con personas que valoran lo hecho a mano</p>
+      <div class="hero-cta">
+        <a href="https://play.google.com/store/apps/details?id=com.rutartesanal.app" class="btn-primary" target="_blank">
+          ↓ Descarga la app
+        </a>
+        <a href="#como-funciona" class="btn-secondary">
+          Cómo funciona
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- FRANJA -->
+  <div class="franja">
+    <div class="franja-item"><div class="franja-dot"></div>Artesanía real cerca de ti</div>
+    <div class="franja-item"><div class="franja-dot"></div>Tenerife · Gran Canaria · Tucumán</div>
+    <div class="franja-item"><div class="franja-dot"></div>Contacto directo con el artesano</div>
+    <div class="franja-item"><div class="franja-dot"></div>Locales y turistas</div>
+  </div>
+
+  <!-- LA HISTORIA -->
+  <section class="section">
+    <div class="section-label">Nuestra historia</div>
+    <h2 class="section-title">El mapa que<br><em>conecta manos</em></h2>
+    <p class="section-body">
+      La artesanía vive escondida. Los mejores talleres no aparecen en Google, los artesanos más talentosos no tienen presencia digital, y las personas que valoran lo hecho a mano no saben dónde encontrarlos. La Ruta Artesana existe para cambiar eso.
+    </p>
+
+    <div class="foto-grid">
+      <div class="foto-item">
+        <img src="foto-artesania3.jpeg" onerror="this.src='https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80'" alt="Taller artesano">
+        <div class="foto-overlay"></div>
+      </div>
+      <div class="foto-item">
+        <img src="foto-artesania4.jpeg" onerror="this.src='https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=600&q=80'" alt="Artesanía">
+        <div class="foto-overlay"></div>
+      </div>
+      <div class="foto-item">
+        <img src="foto-artesania5.jpeg" onerror="this.src='https://images.unsplash.com/photo-1607344645866-009c320b63e0?w=600&q=80'" alt="Artesanía">
+        <div class="foto-overlay"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CÓMO FUNCIONA -->
+  <section class="como" id="como-funciona">
+    <div class="como-inner">
+      <div class="section-label">Cómo funciona</div>
+      <h2 class="section-title">Tan simple como<br><em>dar un paseo</em></h2>
+
+      <div class="pasos">
+        <div class="paso">
+          <div class="paso-num">01</div>
+          <div class="paso-line"></div>
+          <div class="paso-title">Abre la app</div>
+          <p class="paso-body">El mapa se llena de pins verdes. Cada pin es un artesano real cerca de donde estás. Locales, turistas, cualquier persona que valore lo hecho a mano.</p>
+        </div>
+        <div class="paso">
+          <div class="paso-num">02</div>
+          <div class="paso-line"></div>
+          <div class="paso-title">Descubre</div>
+          <p class="paso-body">Toca cualquier pin y conoce al artesano. Su oficio, sus productos, su historia. Cerámica, joyería, madera, cuero, textiles. Cada taller es único.</p>
+        </div>
+        <div class="paso">
+          <div class="paso-num">03</div>
+          <div class="paso-line"></div>
+          <div class="paso-title">Conecta</div>
+          <p class="paso-body">Un mensaje de WhatsApp y el vínculo empieza. Pregunta, visita el taller, encarga una pieza. Lo hecho a mano merece una conversación real.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- APP MOCKUP -->
+  <section class="mockup-section">
+    <div class="mockup-img" style="display:flex;gap:16px;justify-content:center;align-items:flex-start;">
+      <img src="captura-app2.jpeg" onerror="this.src='https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&q=80'" alt="La Ruta Artesana App" style="width:48%;max-width:220px;border-radius:24px;box-shadow:0 30px 60px rgba(0,0,0,0.6);">
+      <img src="captura-app1.jpeg" onerror="this.src='https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=400&q=80'" alt="La Ruta Artesana App" style="width:48%;max-width:220px;border-radius:24px;box-shadow:0 30px 60px rgba(0,0,0,0.6);margin-top:40px;">
+    </div>
+    <div class="mockup-text">
+      <div class="section-label">La aplicación</div>
+      <h2 class="section-title">El mapa de la<br><em>artesanía real</em></h2>
+      <p class="section-body">
+        Abre la app, encuentra el pin verde más cercano y descubre el taller que hay detrás. Contacta directamente con el artesano por WhatsApp. Sin intermediarios, sin comisiones.
+      </p>
+      <a href="https://play.google.com/store/apps/details?id=com.rutartesanal.app" class="btn-primary" target="_blank">
+        Descarga en Google Play
+      </a>
+    </div>
+  </section>
+
+  <!-- ARTESANOS -->
+  <section class="artesanos-section">
+    <div class="artesanos-inner">
+      <div class="section-label">Los artesanos</div>
+      <h2 class="section-title">Manos que<br><em>crean el mundo</em></h2>
+
+      <div class="artesanos-grid">
+        <div class="artesano-card">
+          <img src="foto-taller.jpeg" onerror="this.src='https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80'" alt="Craft Love">
+          <div class="artesano-card-overlay">
+            <div class="artesano-oficio">Joyería · Tenerife</div>
+            <div class="artesano-nombre">Craft Love</div>
+          </div>
+        </div>
+        <div class="artesano-card">
+          <img src="foto-artesania1.jpeg" onerror="this.src='https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=600&q=80'" alt="Artesanía">
+          <div class="artesano-card-overlay">
+            <div class="artesano-oficio">Hecho a mano · Canarias</div>
+            <div class="artesano-nombre">Artesanía real</div>
+          </div>
+        </div>
+        <div class="artesano-card">
+          <img src="foto-artesania2.jpeg" onerror="this.src='https://images.unsplash.com/photo-1607344645866-009c320b63e0?w=600&q=80'" alt="Artesanía">
+          <div class="artesano-card-overlay">
+            <div class="artesano-oficio">Taller · Tenerife</div>
+            <div class="artesano-nombre">Lo hecho a mano</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="cta-section">
+    <div class="cta-bg"></div>
+    <div style="position:relative; z-index:1;">
+      <div class="section-label" style="justify-content:center;">Únete</div>
+      <h2 class="section-title">¿Eres artesano/a?<br><em>El mapa te espera</em></h2>
+      <p class="section-body">
+        Lleva tu taller a miles de personas que buscan exactamente lo que haces. Alta gratuita el primer año.
+      </p>
+      <div class="cta-btns">
+        <a href="https://play.google.com/store/apps/details?id=com.rutartesanal.app" class="btn-primary" target="_blank">
+          Súmate como artesano/a
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=com.rutartesanal.app" class="btn-secondary" target="_blank">
+          Descubre artesanía
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">La <span>Ruta</span> Artesana</div>
+    <div class="footer-copy">© 2026 La Ruta Artesana · Porque lo hecho a mano tiene vida</div>
+  </footer>
+
+  <script>
+    // Intersection Observer para animar los pasos
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, idx) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, idx * 150);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll('.paso').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
