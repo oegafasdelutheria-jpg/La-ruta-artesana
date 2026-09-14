@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Un objeto que sabe de dónde viene | La Ruta Artesana</title>
+  <meta name="description" content="La artesanía local no es solamente una manera de fabricar. También es una forma de conservar conocimientos, cuidar los materiales y mantener vivo el vínculo entre las personas y el territorio.">
+  <meta property="og:title" content="Un objeto que sabe de dónde viene | La Ruta Artesana">
+  <meta property="og:description" content="La artesanía local no es solamente una manera de fabricar. También es una forma de conservar conocimientos, cuidar los materiales y mantener vivo el vínculo entre las personas y el territorio.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://larutaartesana.com/un-objeto-que-sabe-de-donde-viene">
+  <meta property="og:image" content="https://larutaartesana.com/artesana-tallando-madera.png">
+  <link rel="canonical" href="https://larutaartesana.com/un-objeto-que-sabe-de-donde-viene">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Un objeto que sabe de dónde viene",
+    "description": "La artesanía local no es solamente una manera de fabricar. También es una forma de conservar conocimientos, cuidar los materiales y mantener vivo el vínculo entre las personas y el territorio.",
+    "image": "https://larutaartesana.com/artesana-tallando-madera.png",
+    "publisher": {
+      "@type": "Organization",
+      "name": "La Ruta Artesana",
+      "url": "https://larutaartesana.com"
+    },
+    "mainEntityOfPage": "https://larutaartesana.com/un-objeto-que-sabe-de-donde-viene"
+  }
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --verde: #52b788;
+      --verde-oscuro: #1a6b3c;
+      --negro: #0a0a0a;
+      --gris-texto: rgba(255,255,255,0.78);
+      --gris-suave: rgba(255,255,255,0.45);
+    }
+
+    body {
+      background: #0a0a0a;
+      color: #fff;
+      font-family: 'Georgia', serif;
+      line-height: 1.7;
+    }
+
+    /* ── HEADER ── */
+    .site-header {
+      width: 100%;
+      background: #111;
+      border-bottom: 1px solid #222;
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo-text {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--verde);
+      text-decoration: none;
+      font-family: 'Georgia', serif;
+    }
+    .header-cta {
+      background: var(--verde);
+      color: #0a0a0a;
+      font-family: sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      padding: 8px 18px;
+      border-radius: 999px;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 480px;
+      overflow: hidden;
+    }
+    .hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      filter: brightness(0.45);
+    }
+    .hero-content {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 48px 24px;
+      max-width: 760px;
+      margin: 0 auto;
+      width: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .hero-tag {
+      display: inline-block;
+      background: rgba(82,183,136,0.15);
+      border: 1px solid rgba(82,183,136,0.4);
+      border-radius: 999px;
+      padding: 4px 14px;
+      font-size: 11px;
+      color: var(--verde);
+      font-family: sans-serif;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      width: fit-content;
+    }
+    .hero h1 {
+      font-size: clamp(32px, 6vw, 56px);
+      font-weight: 700;
+      line-height: 1.1;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+    .hero-meta {
+      font-size: 13px;
+      color: var(--gris-suave);
+      font-family: sans-serif;
+    }
+
+    /* ── ARTÍCULO ── */
+    .article-wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 64px 24px 80px;
+    }
+
+    .intro {
+      font-size: clamp(18px, 2.5vw, 22px);
+      line-height: 1.6;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 48px;
+      font-style: italic;
+    }
+
+    h2 {
+      font-size: clamp(22px, 3vw, 30px);
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 16px;
+      margin-top: 56px;
+      line-height: 1.2;
+    }
+    h2 em {
+      color: var(--verde);
+      font-style: italic;
+    }
+
+    p {
+      font-size: 17px;
+      line-height: 1.8;
+      color: var(--gris-texto);
+      margin-bottom: 20px;
+      font-family: sans-serif;
+    }
+
+    .destacado {
+      border-left: 3px solid var(--verde);
+      padding: 20px 24px;
+      margin: 40px 0;
+      background: rgba(82,183,136,0.06);
+      border-radius: 0 8px 8px 0;
+    }
+    .destacado p {
+      font-size: 19px;
+      font-style: italic;
+      color: rgba(255,255,255,0.9);
+      margin: 0;
+      font-family: 'Georgia', serif;
+    }
+
+    .divisor {
+      width: 48px;
+      height: 2px;
+      background: var(--verde);
+      margin: 48px 0;
+    }
+
+    /* ── CTA FINAL ── */
+    .cta-final {
+      background: #111;
+      border: 1px solid #222;
+      border-radius: 16px;
+      padding: 40px 32px;
+      text-align: center;
+      margin-top: 64px;
+    }
+    .cta-final h3 {
+      font-size: 26px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+    .cta-final p {
+      font-size: 15px;
+      color: var(--gris-suave);
+      margin-bottom: 28px;
+      font-family: sans-serif;
+    }
+    .btn-verde {
+      display: inline-block;
+      background: var(--verde);
+      color: #0a0a0a;
+      font-family: sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      padding: 16px 32px;
+      border-radius: 12px;
+      text-decoration: none;
+    }
+
+    /* ── FOOTER ── */
+    .site-footer {
+      text-align: center;
+      padding: 40px 24px;
+      border-top: 1px solid #1a1a1a;
+      font-family: sans-serif;
+      font-size: 13px;
+      color: rgba(255,255,255,0.2);
+      line-height: 2;
+    }
+    .site-footer a {
+      color: var(--verde);
+      text-decoration: none;
+    }
+
+    @media (max-width: 600px) {
+      .hero { height: 360px; }
+      .hero-content { padding: 32px 20px; }
+      .article-wrap { padding: 40px 20px 60px; }
+      .cta-final { padding: 28px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <a href="/" class="logo-text">La Ruta Artesana</a>
+    <a href="https://play.google.com/store/apps/details?id=com.rutartesanal.app" class="header-cta" target="_blank">
+      Descarga la app
+    </a>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <img src="artesana-tallando-madera.png" alt="Persona artesana tallando un cuenco de madera a mano en su taller">
+    <div class="hero-content">
+      <div class="hero-tag">Reflexión</div>
+      <h1>Un objeto que sabe<br>de dónde viene</h1>
+      <div class="hero-meta">La Ruta Artesana · Septiembre 2026 · 5 min de lectura</div>
+    </div>
+  </section>
+
+  <!-- ARTÍCULO -->
+  <article class="article-wrap">
+
+    <p class="intro">
+      La artesanía local no es solamente una manera de fabricar. También es una forma de conservar conocimientos, cuidar los materiales y mantener vivo el vínculo entre las personas y el territorio.
+    </p>
+
+    <p>
+      La mayoría de los objetos que utilizamos llegan a nuestras manos sin historia. Sabemos cuánto cuestan y para qué sirven, pero casi nunca quién los hizo, dónde se fabricaron o qué recorrido siguieron hasta llegar a nosotros.
+    </p>
+    <p>
+      Con una pieza artesanal sucede algo diferente. Detrás de ella suele haber un taller, unas manos y una persona que ha dedicado tiempo a comprender un material. Puede ser madera, barro, cuero, vidrio, lana, metal o fibras vegetales. Cada materia tiene sus propios tiempos, límites y posibilidades, y aprender a trabajar con ella requiere años de observación y práctica.
+    </p>
+
+    <h2>Las manos no <em>repiten</em>, interpretan</h2>
+    <p>
+      Una persona artesana no se limita a reproducir una forma. Mientras trabaja, toma pequeñas decisiones continuamente: observa la veta de una madera, la humedad del barro, la tensión de un hilo o la temperatura de un metal. Y todo esto, además, va más allá de la técnica.
+    </p>
+    <p>
+      Por eso dos piezas realizadas por la misma persona nunca son completamente idénticas. No se trata de errores ni de falta de precisión. Son las huellas naturales de un proceso en el que la materia también interviene en el resultado.
+    </p>
+
+    <div class="destacado">
+      <p>Esa pequeña diferencia es, precisamente, una parte importante de su valor.</p>
+    </div>
+
+    <p>
+      Cuando contemplamos una pieza artesanal terminada, vemos el objeto. Pero también estamos viendo todas las decisiones que hicieron posible su existencia: qué parte del material conservar, dónde insistir, cuándo detenerse y qué imperfección aceptar como parte de su carácter.
+    </p>
+
+    <h2>Artesanía no es <em>vivir en el pasado</em></h2>
+    <p>
+      A veces se presenta la artesanía como algo antiguo, decorativo o alejado de la vida cotidiana. Sin embargo, muchos talleres actuales combinan conocimientos tradicionales con herramientas contemporáneas, nuevos diseños y formas diferentes de relacionarse con el público.
+    </p>
+    <p>
+      La artesanía está presente en objetos que usamos todos los días: una taza, una lámpara, una mesa, una joya, un bolso, una prenda, un instrumento musical o unas gafas.
+    </p>
+    <p>
+      Lo artesanal no depende de que una pieza tenga aspecto rústico. Depende de cómo ha sido pensada y producida, del conocimiento que contiene y de la relación que existe entre quien la crea y el material que utiliza.
+    </p>
+
+    <div class="divisor"></div>
+
+    <h2>Saber quién lo hizo <em>cambia el objeto</em></h2>
+    <p>
+      Conocer a la persona que fabrica una pieza modifica nuestra manera de mirarla.
+    </p>
+    <p>
+      Podemos preguntarle por el origen del material, descubrir por qué eligió una determinada forma o entender cuánto trabajo hay detrás de un detalle que antes habría pasado inadvertido. En algunos casos, también podemos encargar una adaptación, reparar la pieza con el paso del tiempo o regresar al mismo taller años después.
+    </p>
+
+    <div class="destacado">
+      <p>El objeto deja entonces de ser anónimo.</p>
+    </div>
+
+    <p>
+      Esta cercanía también permite que los conocimientos sigan circulando. Cada vez que un taller permanece abierto, no solamente se mantiene una actividad económica. También permanece vivo un oficio: una manera de trabajar, resolver problemas y comprender los materiales que difícilmente puede conservarse únicamente en libros o vídeos.
+    </p>
+
+    <h2>Mirar cerca antes de <em>buscar lejos</em></h2>
+    <p>
+      No siempre sabemos que existen personas artesanas trabajando a pocos kilómetros de nosotros. Muchos talleres son pequeños, producen pocas unidades y no aparecen fácilmente entre los grandes resultados de internet.
+    </p>
+    <p>
+      Por eso descubrir la artesanía cercana puede ser una sorpresa. Quizá la persona que fabrica el objeto que estamos buscando no se encuentra al otro lado del mundo, sino en nuestro propio municipio o en una localidad próxima.
+    </p>
+    <p>
+      Elegir una pieza realizada cerca no significa rechazar todo lo industrial. Significa recuperar la posibilidad de decidir sabiendo algo más: quién está detrás del objeto, cómo trabaja y qué historia queremos incorporar a nuestra vida.
+    </p>
+    <p>
+      Comprar artesanía puede ser también una forma de comprar con más calma: menos objetos, mejor elegidos y con más posibilidades de acompañarnos durante mucho tiempo.
+    </p>
+
+    <h2>Hay alguien creando <em>cerca de ti</em></h2>
+    <p>
+      Cada taller guarda una historia, pero muchas permanecen ocultas hasta que alguien cruza la puerta, hace una pregunta o descubre por casualidad a la persona que trabaja allí.
+    </p>
+    <p>
+      La Ruta Artesana quiere acortar esa distancia.
+    </p>
+    <p>
+      Porque detrás de cada pieza hay alguien que imagina, prueba, se equivoca, aprende y vuelve a empezar. Y puede que esa persona esté mucho más cerca de lo que piensas.
+    </p>
+
+    <!-- CTA -->
+    <div class="cta-final">
+      <h3>Descubre a la persona artesana que hoy te recomendamos cerca de ti</h3>
+      <p>Conoce su trabajo y, si algo despierta tu curiosidad, escríbele directamente.</p>
+      <a href="https://play.google.com/store/apps/details?id=com.rutartesanal.app" class="btn-verde" target="_blank">
+        Descarga gratis en Google Play
+      </a>
+    </div>
+
+  </article>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div><a href="/">La Ruta Artesana</a> · Artesanía hecha a mano</div>
+    <div>Tenerife · Gran Canaria · Tucumán</div>
+    <div style="margin-top:8px"><a href="/">← Volver al inicio</a></div>
+  </footer>
+
+</body>
+</html>
